@@ -1,0 +1,2 @@
+- [x] Modify TabsTrigger component in src/components/ui/tabs.jsx to add gray background and reduced opacity for inactive tabs
+- [x] Run the development server to verify the tab styling changes

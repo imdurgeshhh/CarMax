@@ -1,0 +1,31 @@
+import React from 'react'
+import Search from './Search'
+import backgroundImg from '../assets/weissach-package-3840x2160-23035.jpg'
+
+function Hero() {
+  return (
+    <div className='relative w-full min-h-[80vh]'>
+      {/* Background layer with blur */}
+      <div 
+        className='absolute inset-0 w-full h-150'
+        style={{
+          backgroundImage: `url(${backgroundImg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          filter: 'blur(8px)',
+          zIndex: 0
+        }}
+      />
+      {/* Content layer without blur */}
+      <div className='relative z-10 flex flex-col items-center px-10 py-20 gap-6 h-150 w-full'>
+            <h2 className='text-lg text-gray-400'></h2>
+            <h2 className='text-[60px] font-bold text-white'>Find Your Dream Car</h2>
+            
+            <Search/>
+            <img src='/m5m5rightfrontthreequarter.webp' className='w-200 max-w-full'/>
+      </div>
+    </div>
+  )
+}
+
+export default Hero
