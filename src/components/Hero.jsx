@@ -11,7 +11,7 @@ function Hero() {
             <h2 className='text-[60px] font-bold text-white'>Find Your Dream Car</h2>
             
             <Search/>
-            <img src='/m5m5rightfrontthreequarter.webp' className='w-200 max-w-full'/>
+
       </div>
     </div>
   )
