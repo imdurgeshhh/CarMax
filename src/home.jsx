@@ -6,16 +6,20 @@ import Category from './components/Category'
 import MostSearchCar from './components/MostSearchCar'
 import InfoSection from './components/InfoSection'
 import Footer from './components/Footer'
+import ScrollAnimation from './components/ScrollAnimation'
 
 function Home() {
   return (
     <div>
-      <Header/>
-      <Hero/>
-      <Category />
-      <MostSearchCar />
-      <InfoSection/>
-      <Footer/>
+      <ScrollAnimation />
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        <Header/>
+        <Hero/>
+        <Category />
+        <MostSearchCar />
+        <InfoSection/>
+        <Footer/>
+      </div>
     </div>
   )
 }

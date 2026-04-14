@@ -36,7 +36,7 @@ function MostSearchCar() {
   },[])
   return (
     <div className='px-2 mx-24'>
-        <h2 className='font-bold text-3xl text-center mt-16 mb-7'>Most Search Car</h2>
+        <h2 className='font-bold text-3xl text-center mt-16 mb-7 text-white'>Most Search Car</h2>
 
       <Carousel>
         <CarouselContent>    

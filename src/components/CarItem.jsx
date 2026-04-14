@@ -31,7 +31,7 @@ function CarItem({ car }) {
 
   return (
     <Link to={'/listing-details/'+car?.id}>
-      <div className='rounded-xl bg-white border hover:shadow-md cursor-pointer'>
+      <div className='rounded-xl bg-white/10 backdrop-blur-md border border-white/20 hover:shadow-md cursor-pointer'>
         <h2 className='absolute m-2 bg-green-500 px-2 rounded-full text-sm text-white'>New</h2>
         {car?.images && car?.images.length > 0 ? (
           <img src={car?.images[0]?.imageUrl} width='100%' height={250}
@@ -44,25 +44,25 @@ function CarItem({ car }) {
           </div>
         )}
         <div className='p-4'>
-          <h2 className='font-bold text-black text-lg mb-2'>{title}</h2>
+          <h2 className='font-bold text-white text-lg mb-2 truncate'>{title}</h2>
           <Separator/>
           <div className='grid grid-cols-3 mt-5'>
             <div className='flex flex-col items-center'>
-              <LuFuel className='text-lg text-black'/>
-              <h2 className='text-black'>{mileage} Miles</h2>
+              <LuFuel className='text-lg text-white'/>
+              <h2 className='text-white'>{mileage} Miles</h2>
             </div>
             <div className='flex flex-col items-center'>
-              <IoSpeedometerOutline className='text-lg text-black' />
-              <h2 className='text-black'>{fuelType}</h2>
+              <IoSpeedometerOutline className='text-lg text-white' />
+              <h2 className='text-white'>{fuelType}</h2>
             </div>
             <div className='flex flex-col items-center'>
-              <GiGearStickPattern className='text-lg text-black' />
-              <h2 className='text-black'>{transmission}</h2>
+              <GiGearStickPattern className='text-lg text-white' />
+              <h2 className='text-white'>{transmission}</h2>
             </div>
           </div>
           <Separator className='my-2'/>
             <div className='flex items-center justify-between'>
-              <h2 className='font-bold text-xl text-black'>₹{sellingPrice}</h2>
+              <h2 className='font-bold text-xl text-white'>₹{sellingPrice}</h2>
               <h2 className='text-blue-600 text-sm flex gap-2 items-center'>
                 <MdOpenInNew />
                 View Details</h2>

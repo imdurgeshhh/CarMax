@@ -38,20 +38,20 @@ function Header() {
     }, []);
 
   return (
-    <div className={`flex justify-between items-center shadow-sm px-5 py-3 fixed top-0 w-full bg-white z-50 transition-transform duration-300 ${isVisible ? '' : '-translate-y-full'}`} style={{ backgroundColor: 'white' }}>
+    <div className={`flex justify-between items-center shadow-sm px-5 py-3 fixed top-0 w-full z-50 transition-transform duration-300 bg-black/60 backdrop-blur-md border-b border-white/10 ${isVisible ? '' : '-translate-y-full'}`}>
         <Link to="/">
             <img src='/logo.svg' width={150} height={90} className='cursor-pointer' />
         </Link>
 
         <ul className='hidden md:flex gap-16'>
             <li className='font-medium hover:scale-105 transition-all cursor-pointer'>
-                <Link to="/" style={{ color: 'black' }}>Home</Link>
+                <Link to="/" className='!text-white hover:!text-blue-400'>Home</Link>
             </li>
-            <li className='font-medium hover:scale-105 transition-all cursor-pointer hover:text-primary'>Search</li>
+            <li className='font-medium hover:scale-105 transition-all cursor-pointer text-white hover:text-blue-400'>Search</li>
             <li className='font-medium hover:scale-105 transition-all cursor-pointer hover:text-primary'>
-                <Link to="/Profile" style={{ color: 'black' }}>Profile</Link>
+                <Link to="/Profile" className='!text-white hover:!text-blue-400'>Profile</Link>
             </li>
-            <li className='font-medium hover:scale-105 transition-all cursor-pointer hover:text-primary'>Contact Us</li>
+            <li className='font-medium hover:scale-105 transition-all cursor-pointer text-white hover:text-blue-400'>Contact Us</li>
         </ul>
 
         <div className='flex items-center gap-5'>
@@ -64,16 +64,16 @@ function Header() {
                                 <UserButton afterSignOutUrl="/" appearance={{ elements: { userButtonBox: 'w-8 h-8' } }} />
                             </div>
                             <Link to={'/Add Listing'}>
-                                <Button className="text-white bg-blue-700">Submit Listing</Button>
+                                <Button className='!bg-blue-600 !text-white hover:!bg-blue-500'>Submit Listing</Button>
                             </Link>
                         </>
                     ) : (
                         <div className='flex items-center gap-3'>
                             <SignInButton mode="modal">
-                                <Button className="text-white bg-blue-700">Sign In</Button>
+                                <Button className='!bg-blue-600 !text-white hover:!bg-blue-500'>Sign In</Button>
                             </SignInButton>
                             <Link to={'/Add Listing'}>
-                                <Button className="text-white bg-blue-700">Submit Listing</Button>
+                                <Button className='!bg-blue-600 !text-white hover:!bg-blue-500'>Submit Listing</Button>
                             </Link>
                         </div>
                     )}
