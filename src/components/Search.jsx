@@ -47,7 +47,7 @@ function Search() {
 
     <Select onValueChange={(value)=>setPrice(value)}>
       <SelectTrigger className="w-50 outline-none md:border-none shadow-none text-lg !bg-transparent text-white !border-transparent">
-        <SelectValue placeholder="Priceing" />
+        <SelectValue placeholder="Pricing" />
       </SelectTrigger>
       <SelectContent className='!bg-black/70 backdrop-blur-md !border-white/20'>
         {Data.Pricing.map((price)=>
