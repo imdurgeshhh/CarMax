@@ -4,11 +4,10 @@ import backgroundImg from '../assets/weissach-package-3840x2160-23035.jpg'
 
 function Hero() {
   return (
-    <div className='relative w-full min-h-[80vh]'>
-      {/* Content layer without blur */}
-      <div className='relative z-10 flex flex-col items-center px-10 py-20 gap-6 h-150 w-full'>
-            <h2 className='text-lg text-gray-400'></h2>
-            <h2 className='text-[60px] font-bold text-white'>Find Your Dream Car</h2>
+    <div className='relative w-full min-h-[60vh] md:min-h-[80vh]'>
+      {/* Content layer — pushed to top ~35% instead of centered */}
+      <div className='relative z-10 flex flex-col items-center px-4 md:px-10 pt-32 md:pt-40 gap-4 md:gap-5 w-full'>
+            <h2 className='text-[clamp(1.4rem,3vw,2.2rem)] font-bold text-white text-center leading-tight'>Find Your Dream Car</h2>
             
             <Search/>
 

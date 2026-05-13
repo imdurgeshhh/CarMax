@@ -10,8 +10,8 @@ const FormatResult=(resp)=>{
     const finalResult = [];
 
     resp.forEach((row)=>{
-        const listing = row.CarListing || row.carListing || row.car_listing || row.listing;
-        const image = row.CarImages || row.carImages || row.car_images || row.image || row.images;
+        const listing = row.carListing || row.CarListing || row.car_listing || row.listing;
+        const image = row.carImages || row.CarImages || row.car_images || row.image || row.images;
 
         let listingId = listing?.id;
         if (!listingId) {

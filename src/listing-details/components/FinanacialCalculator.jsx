@@ -21,30 +21,30 @@ function FinanacialCalculator({ carDetails }) {
 
 
   return (
-    <div className='p-10 border rounded-xl shadow-md mt-7'>
-        <h2 className='font-medium text-2xl'>Finanacial Calculator</h2>
-        <div className='flex gap-5 mt-5'>
+    <div className='p-5 md:p-10 border rounded-xl shadow-md mt-5 md:mt-7'>
+        <h2 className='font-medium text-xl md:text-2xl'>Financial Calculator</h2>
+        <div className='flex flex-col sm:flex-row gap-3 md:gap-5 mt-4 md:mt-5'>
             <div className='w-full'>
-                <label>price ₹</label>
-                <Input type='number' value={carPrice} onChange={(e)=>setCarPrice(e.target.value)}/>
+                <label className='text-sm md:text-base'>Price ₹</label>
+                <Input type='number' className='w-full' value={carPrice} onChange={(e)=>setCarPrice(e.target.value)}/>
             </div>
-            <div  className='w-full'>
-                <label>Interest Rate</label>
-                <Input type='number' value={interestRate} onChange={(e)=>setInterestRate(e.target.value)}/>
+            <div className='w-full'>
+                <label className='text-sm md:text-base'>Interest Rate</label>
+                <Input type='number' className='w-full' value={interestRate} onChange={(e)=>setInterestRate(e.target.value)}/>
             </div>
         </div>
-        <div className='flex gap-5 mt-5'>
+        <div className='flex flex-col sm:flex-row gap-3 md:gap-5 mt-3 md:mt-5'>
             <div className='w-full'>
-                <label>Loan Term (Months)</label>
-                <Input type='number' value={loanTerm} onChange={(e)=>setLoanTerm(e.target.value)}/>
+                <label className='text-sm md:text-base'>Loan Term (Months)</label>
+                <Input type='number' className='w-full' value={loanTerm} onChange={(e)=>setLoanTerm(e.target.value)}/>
             </div>
-            <div  className='w-full'>
-                <label>Down Payment</label>
-                <Input type='number' value={downPayment} onChange={(e)=>setDownPayment(e.target.value)}/>
+            <div className='w-full'>
+                <label className='text-sm md:text-base'>Down Payment</label>
+                <Input type='number' className='w-full' value={downPayment} onChange={(e)=>setDownPayment(e.target.value)}/>
             </div>
         </div>
-        {monthlyPayment>0&& <h2 className='font-medium text-2xl mt-5'>Your Monthly Payment Is :<span className=' font-bold text-4xl'>₹{monthlyPayment}</span></h2>}
-        <Button className='w-full mt-5' size='lg'
+        {monthlyPayment>0&& <h2 className='font-medium text-lg md:text-2xl mt-4 md:mt-5'>Your Monthly Payment Is: <span className='font-bold text-2xl md:text-4xl'>₹{monthlyPayment}</span></h2>}
+        <Button className='w-full mt-4 md:mt-5 min-h-[44px]' size='lg'
         onClick={CalculateMonthlyPayment}
         >Calculate</Button>
     </div>

@@ -65,7 +65,7 @@ function Profile() {
 
   return (
     <div className="w-full">
-      <div className="bg-white rounded-lg shadow-md p-4">
+      <div className="bg-gray-950 text-white rounded-lg shadow-md p-4">
         <div className="flex flex-col items-center mb-4">
           {/* Profile Photo */}
           <div className="mb-2">
@@ -130,24 +130,24 @@ function Profile() {
               />
             </div>
           ) : (
-            <h2 className="text-2xl font-bold text-gray-800">
+            <h2 className="text-2xl font-bold text-white">
               {user?.fullName || user?.username || 'User'}
             </h2>
           )}
           
           {/* Email */}
-          <p className="text-gray-600 mt-1 text-base">
+          <p className="text-white mt-1 text-base">
             {user?.primaryEmailAddress?.emailAddress || 'No email'}
           </p>
         </div>
 
         <div className="border-t pt-4">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">Account Details</h3>
+          <h3 className="text-lg font-semibold text-gray-800 mb-4 text-white">Account Details</h3>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 ">
             {/* First Name */}
-            <div className="bg-gray-50 p-3 rounded-lg">
-              <span className="text-gray-600 block text-sm">First Name</span>
+            <div className="bg-gray-800 p-3 rounded-lg">
+              <span className="text-white block text-sm">First Name</span>
               {isEditing ? (
                 <Input
                   type="text"
@@ -162,8 +162,8 @@ function Profile() {
             </div>
 
             {/* Last Name */}
-            <div className="bg-gray-50 p-3 rounded-lg">
-              <span className="text-gray-600 block text-sm">Last Name</span>
+            <div className="bg-gray-800 p-3 rounded-lg">
+              <span className="text-white block text-sm">Last Name</span>
               {isEditing ? (
                 <Input
                   type="text"
@@ -178,16 +178,16 @@ function Profile() {
             </div>
 
             {/* Email */}
-            <div className="bg-gray-50 p-3 rounded-lg">
-              <span className="text-gray-600 block text-sm">Email</span>
-              <span className="font-medium text-gray-800">
+            <div className="bg-gray-800 p-3 rounded-lg">
+              <span className="text-white block text-sm">Email</span>
+              <span className="font-medium text-white">
                 {user?.primaryEmailAddress?.emailAddress || '-'}
               </span>
             </div>
 
             {/* Phone Number */}
-            <div className="bg-gray-50 p-3 rounded-lg">
-              <span className="text-gray-600 block text-sm">Phone Number</span>
+            <div className="bg-gray-800 p-3 rounded-lg">
+              <span className="text-white block text-sm">Phone Number</span>
               {isEditing ? (
                 <Input
                   type="tel"
@@ -196,24 +196,24 @@ function Profile() {
                   onChange={(e) => setPhoneNumber(e.target.value)}
                 />
               ) : (
-                <span className="font-medium text-gray-800">
+                <span className="font-medium text-white">
                   {user?.phoneNumbers?.[0]?.phoneNumber || 'Not provided'}
                 </span>
               )}
             </div>
 
             {/* Username */}
-            <div className="bg-gray-50 p-3 rounded-lg">
-              <span className="text-gray-600 block text-sm">Username</span>
-              <span className="font-medium text-gray-800">
+            <div className="bg-gray-800 p-3 rounded-lg">
+              <span className="text-white block text-sm">Username</span>
+              <span className="font-medium text-white">
                 {user?.username || '-'}
               </span>
             </div>
 
             {/* Created At */}
-            <div className="bg-gray-50 p-3 rounded-lg">
-              <span className="text-gray-600 block text-sm">Member Since</span>
-              <span className="font-medium text-gray-800">
+            <div className="bg-gray-800 p-3 rounded-lg">
+              <span className="text-white block text-sm">Member Since</span>
+              <span className="font-medium text-white">
                 {user?.createdAt ? new Date(user.createdAt).toLocaleDateString() : '-'}
               </span>
             </div>

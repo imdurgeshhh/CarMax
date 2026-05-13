@@ -150,13 +150,13 @@ function  AddListing() {
   return (
     <div> 
         <Header/>
-        <div className='pt-20 px-10 md:px-20 my-10'>
-            <h2 className='font-bold text-4xl'>Add New Listing</h2>
-            <form className='p-10 border rounded-xl mt-10'>
+        <div className='pt-20 px-4 md:px-10 lg:px-20 my-6 md:my-10 bg-gray-950 text-white rounded-xl'>
+            <h2 className='font-bold text-2xl md:text-4xl'>Add New Listing</h2>
+            <form className='p-4 md:p-10 border rounded-xl mt-6 md:mt-10'>
                 {/* Car Details */}
                 <div>
-                    <h2 className='font-medium text-xl mb-6'>Car Details</h2>
-                    <div  className='grid grid-cols-1 md:grid-cols-2 gap-5'>
+                    <h2 className='font-medium text-lg md:text-xl mb-4 md:mb-6'>Car Details</h2>
+                    <div  className='grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5'>
                         {carDetails.carDetails.map((item, index)=>(
                             <div key={index}>
                                 <label className='text-sm flex gap-2 items-center mb-1'>
@@ -176,13 +176,13 @@ function  AddListing() {
                 <Separator className='mt-6'/>
                 {/* Feature List */}
                 <div>
-                    <h2 className='font-medium text-xl my-6'>Features</h2>
-                    <div className='grid grid-cols-2 md:grid-cols-3 gap-2'>
+                    <h2 className='font-medium text-lg md:text-xl my-4 md:my-6'>Features</h2>
+                    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2'>
                         {feature.features.map((item,index)=>(
-                            <div key={index} className='flex gap-2 items-center'>
+                            <div key={index} className='flex gap-2 items-center min-h-[44px]'>
                                  <Checkbox onCheckedChange={(value)=> handleFeatureChange(item.name,value)} 
                                     checked={featuresData?.[item.name]}
-                                /><h2>{item.label}</h2>
+                                /><h2 className='text-sm md:text-base'>{item.label}</h2>
                             </div>
                         ))}
                     </div>
@@ -193,8 +193,9 @@ function  AddListing() {
                carInfo={carInfo}
                mode={mode}
                setLoader={(v)=>{setLoader(v); navigate('/profile')}}/>
-                <div className='mt-10 flex justify-end'>
+                <div className='mt-6 md:mt-10 flex justify-end'>
                     <Button type='button'
+                    className='w-full md:w-auto min-h-[44px]'
                     disabled={loader}
                     onClick={(e) =>onsubmit(e)}>
                         {!loader?'Submit':<BiLoaderAlt className='animate-spin text-lg' />}</Button>

@@ -33,19 +33,19 @@ function SearchByCategory() {
     <div>
         <Header/>
 
-        <div className=' mt-15 p-16 bg-black flex justify-center'>
+        <div className='mt-15 p-4 md:p-8 lg:p-16 bg-black flex justify-center'>
             <Search/>
         </div>
-        <div className=' p-10 md:px-20'>
-            <h2 className='font-bold text-xl'>{category}</h2>
-            <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-rows-4 gap-5 mt-7'>
+        <div className='p-4 md:p-10 lg:px-20'>
+            <h2 className='font-bold text-lg md:text-xl'>{category}</h2>
+            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-5 mt-5 md:mt-7'>
                 {carList?.length>0? carList.map((item)=>(
                     <div key={item.id}>
                         <CarItem car={item}/>
                     </div>
                 )):
                 [1,2,3,4,5,6].map((item,index)=>(
-                     <div className='h-75 rounded-xl bg-slate-200 animate-pulse'>
+                     <div key={index} className='h-[250px] md:h-75 rounded-xl bg-slate-200 animate-pulse'>
 
                     </div>
                 ))
