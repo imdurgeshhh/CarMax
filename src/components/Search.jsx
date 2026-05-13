@@ -18,9 +18,9 @@ function Search() {
   const [price, setPrice]=useState(null);
 
   return (
-  <div className=' justify-between p-2 md:p-5 bg-white/10 backdrop-blur-md border border-white/20 rounded-md md:rounded-full flex-col md:flex md:flex-row gap-10 px-5 items-center w-[60%]'>
+  <div className='justify-between p-3 md:p-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl md:rounded-full flex flex-col md:flex-row gap-3 md:gap-6 px-4 md:px-5 items-stretch md:items-center w-[92%] max-w-[700px]'>
     <Select onValueChange={(value)=>setCars(value)}>
-      <SelectTrigger className="w-50 outline-none md:border-none shadow-none text-lg !bg-transparent text-white !border-transparent">
+      <SelectTrigger className="w-full md:w-auto md:flex-1 outline-none md:border-none shadow-none text-sm md:text-base !bg-transparent text-white !border-transparent">
         <SelectValue placeholder="Cars" />
       </SelectTrigger>
       <SelectContent className='!bg-black/70 backdrop-blur-md !border-white/20'>
@@ -30,10 +30,11 @@ function Search() {
       </SelectContent>
     </Select>
 
-    <Separator orientation='vertical' className='hidden md:block'/>
+    <Separator orientation='vertical' className='hidden md:block h-6'/>
+    <Separator className='md:hidden'/>
 
     <Select onValueChange={(value)=>setMake(value)}>
-      <SelectTrigger className="w-50 outline-none md:border-none shadow-none text-lg !bg-transparent text-white !border-transparent">
+      <SelectTrigger className="w-full md:w-auto md:flex-1 outline-none md:border-none shadow-none text-sm md:text-base !bg-transparent text-white !border-transparent">
         <SelectValue placeholder="Car Makes" />
       </SelectTrigger>
       <SelectContent className='!bg-black/70 backdrop-blur-md !border-white/20'>
@@ -43,10 +44,11 @@ function Search() {
       </SelectContent>
     </Select>
 
-    <Separator orientation='vertical' className='hidden md:block'/>
+    <Separator orientation='vertical' className='hidden md:block h-6'/>
+    <Separator className='md:hidden'/>
 
     <Select onValueChange={(value)=>setPrice(value)}>
-      <SelectTrigger className="w-50 outline-none md:border-none shadow-none text-lg !bg-transparent text-white !border-transparent">
+      <SelectTrigger className="w-full md:w-auto md:flex-1 outline-none md:border-none shadow-none text-sm md:text-base !bg-transparent text-white !border-transparent">
         <SelectValue placeholder="Pricing" />
       </SelectTrigger>
       <SelectContent className='!bg-black/70 backdrop-blur-md !border-white/20'>
@@ -55,8 +57,8 @@ function Search() {
         )}
       </SelectContent>
     </Select>
-    <Link to={'/search?cars='+cars+"&make="+make+"&price"+price}>
-    <CiSearch className='text-[50px] bg-blue rounded-full p-3 hover:scale-105 transition-all cursor-pointer'/>
+    <Link to={'/search?cars='+cars+"&make="+make+"&price"+price} className='self-center md:self-auto'>
+    <CiSearch className='text-[40px] md:text-[46px] bg-blue-600 text-white rounded-full p-2.5 hover:scale-105 transition-all cursor-pointer min-w-[40px] min-h-[40px]'/>
     </Link>
   </div>
   )

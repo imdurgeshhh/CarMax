@@ -66,11 +66,11 @@ function MyListing() {
     };
 
     return (
-        <div className='mt-6'>
-            <div className='flex justify-between items-center'>
-                <h2 className='font-bold text-4xl mt-6'>My Listing</h2>
+        <div className='mt-4 md:mt-6'>
+            <div className='flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3'>
+                <h2 className='font-bold text-2xl md:text-4xl mt-4 md:mt-6'>My Listing</h2>
                 <Link to={'/Add Listing'}>
-                    <Button className='rounded-lg px-4 py-2'>+ Add New Listing</Button>
+                    <Button className='rounded-lg px-4 py-2 w-full sm:w-auto min-h-[44px] !bg-blue-600 !text-white hover:!bg-blue-500'>+ Add New Listing</Button>
                 </Link>
             </div>
             
@@ -78,19 +78,19 @@ function MyListing() {
             {error && <p className='mt-4 text-red-500'>Error: {error}</p>}
             {!loading && carList.length === 0 && !error && <p className='mt-4 text-gray-500'>No listings found. Create one!</p>}
             
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mt-4 md:mt-6'>
                 {carList.map((item, index) => (
                     <div key={index}>
                         <CarItem car={item} />
-                        <div className='mt-3 bg-gray-50 rounded-lg flex justify-between gap-2'>
-                            <Link to={'/Add%20Listing?mode=edit&id='+item?.id} className='flex-1 h-9 text-sm'>
-                                <Button variant='outline' className='flex-1 h-9 text-sm'>Edit</Button>
+                        <div className='mt-3 rounded-lg flex justify-between gap-2'>
+                            <Link to={'/Add%20Listing?mode=edit&id='+item?.id} className='flex-1'>
+                                <Button variant='outline' className='w-full h-9 text-sm min-h-[44px] !bg-white/10 !text-white !border-white/20 hover:!bg-white/20'>Edit</Button>
                             </Link>
                             <AlertDialog>
                                 <AlertDialogTrigger asChild>
-                                    <Button size='icon' className='h-9 w-9 bg-red-500 text-white hover:bg-red-600'><FaTrashAlt className='h-4 w-4'/></Button>
+                                    <Button size='icon' className='h-9 w-9 bg-red-500 text-white hover:bg-red-600 min-h-[44px] min-w-[44px]'><FaTrashAlt className='h-4 w-4'/></Button>
                                 </AlertDialogTrigger>
-                                <AlertDialogContent className="bg-gray-50">
+                                <AlertDialogContent className="bg-gray-50 mx-4 max-w-[calc(100vw-2rem)]">
                                     <AlertDialogHeader>
                                         <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                                         <AlertDialogDescription>

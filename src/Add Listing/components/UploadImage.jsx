@@ -1,70 +1,92 @@
-import { storage } from './../../../configs/firebaseConfig';
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import React, { useEffect, useState } from 'react'
 import { IoMdCloseCircle } from "react-icons/io";
-import { Button } from '../../components/ui/button';
 import { db } from '../../../configs';
-import { CarImages, CarListing } from './../../../configs/schema';
+import { CarImages } from './../../../configs/schema';
 import { eq } from 'drizzle-orm';
 
-function UploadImage({triggerUploadImages,setLoader, carInfo, mode}) {
+const CLOUDINARY_CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+const CLOUDINARY_UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
 
-    const [selectedFileList,setSelectedFileList]=useState([])
-    const [EditCarImageList,setEditCarImageList]=useState([]);
+/**
+ * Upload a single file to Cloudinary using unsigned upload.
+ * Returns the secure_url from Cloudinary's response.
+ */
+async function uploadToCloudinary(file) {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
 
-    useEffect(()=>{
-        if(mode=='edit'){
+    const response = await fetch(
+        `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
+        { method: 'POST', body: formData }
+    );
+
+    if (!response.ok) {
+        const errorBody = await response.text();
+        throw new Error(`Cloudinary upload failed (${response.status}): ${errorBody}`);
+    }
+
+    const data = await response.json();
+    
+    // Apply Cloudinary URL transformation for consistent 16:9 aspect ratio
+    // Insert /c_fill,ar_16:9,g_auto,q_auto,f_auto/ into the URL
+    const transformedUrl = data.secure_url.replace(
+        '/upload/',
+        '/upload/c_fill,ar_16:9,g_auto,q_auto,f_auto/'
+    );
+    return transformedUrl;
+}
+
+function UploadImage({triggerUploadImages, setLoader, carInfo, mode}) {
+
+    const [selectedFileList, setSelectedFileList] = useState([])
+    const [EditCarImageList, setEditCarImageList] = useState([]);
+
+    useEffect(() => {
+        if(mode == 'edit'){
             setEditCarImageList([]);
-            carInfo?.images.forEach((image)=>{
-                setEditCarImageList(prev=>[...prev,image?.imageUrl]);
-                
+            carInfo?.images.forEach((image) => {
+                setEditCarImageList(prev => [...prev, image?.imageUrl]);
             })
         }
-    },[carInfo])
+    }, [carInfo])
 
-    useEffect(()=>{
-        if(triggerUploadImages)
-        {
+    useEffect(() => {
+        if(triggerUploadImages) {
             UploadImagesToServer()
         }
-    },[triggerUploadImages])
+    }, [triggerUploadImages])
 
-    const onFileSelected=(event)=>{
-        const files=event.target.files;
+    const onFileSelected = (event) => {
+        const files = event.target.files;
         const newFiles = Array.from(files);
         setSelectedFileList([...selectedFileList, ...newFiles]);
     }
 
-    const onImageRemove=(Image)=>{
-        const result = selectedFileList.filter((item)=>item!=Image);
+    const onImageRemove = (Image) => {
+        const result = selectedFileList.filter((item) => item != Image);
         setSelectedFileList(result);
     }
-    const onImageRemoveFromDB=async(image, index) =>{
 
-        await db.delete(CarImages).where(eq(CarImages.id,carInfo?.images[index]?.id)).returning({id:CarImages.id});
-        const imageList= EditCarImageList.filter(item=>item!=image);
+    const onImageRemoveFromDB = async(image, index) => {
+        await db.delete(CarImages).where(eq(CarImages.id, carInfo?.images[index]?.id)).returning({id: CarImages.id});
+        const imageList = EditCarImageList.filter(item => item != image);
         setEditCarImageList(imageList);
     }
 
-     const UploadImagesToServer=async()=>{
+    const UploadImagesToServer = async() => {
         setLoader(true);
         try {
             if (!selectedFileList || selectedFileList.length === 0) {
-                // nothing to upload
+                // nothing to upload — still unlock loader so page doesn't freeze
+                setLoader(false);
                 return;
             }
 
             for (const file of selectedFileList) {
-                const ext = (file.name && file.name.split('.').pop()) || 'jpeg';
-                const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-                const storageRef = ref(storage, 'Car-Marketplace/' + fileName);
-                const metaData = {
-                    contentType: file.type || 'image/jpeg'
-                };
-
-                await uploadBytes(storageRef, file, metaData);
-                const downloadUrl = await getDownloadURL(storageRef);
-                console.log('Uploaded and got URL:', downloadUrl);
+                // Upload to Cloudinary instead of Firebase Storage
+                const downloadUrl = await uploadToCloudinary(file);
+                console.log('Uploaded to Cloudinary, URL:', downloadUrl);
 
                 await db.insert(CarImages).values({
                     imageUrl: downloadUrl,
@@ -84,20 +106,20 @@ function UploadImage({triggerUploadImages,setLoader, carInfo, mode}) {
         <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5'>
 
             {mode=='edit' &&
-            EditCarImageList.map((Image,index)=> (
+            EditCarImageList.map((Image,index) => (
                 <div key={index}>
                     <IoMdCloseCircle className='absolute m-2 text-lg text-white'
-                    onClick={()=>onImageRemoveFromDB(Image,index)}
+                    onClick={() => onImageRemoveFromDB(Image,index)}
                     />
                     <img src={Image} className='w-full h-33 object-cover rounded-xl' />
                 </div>
             ))
             }
 
-            {selectedFileList.map((Image,index)=> (
+            {selectedFileList.map((Image,index) => (
                 <div key={index}>
                     <IoMdCloseCircle className='absolute m-2 text-lg text-white'
-                    onClick={()=>onImageRemove(Image,index)}
+                    onClick={() => onImageRemove(Image,index)}
                     />
                     <img src={URL.createObjectURL(Image)} className='w-full h-33 object-cover rounded-xl' />
                 </div>

@@ -45,8 +45,9 @@ const iconMap = {
 };
 
 function IconField(item) {
+  const small = item.size === 'sm';
   return (
-    <div className='text-blue-600 bg-blue-100 p-1.5 rounded-full'>{iconMap[item.icon]}</div>
+    <div className={`text-blue-600 bg-blue-100 rounded-full ${small ? 'p-1 text-sm' : 'p-1.5'}`}>{iconMap[item.icon]}</div>
   )
 }
 

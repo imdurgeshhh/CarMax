@@ -42,16 +42,16 @@ function OnwersDetails({ carDetails }) {
     }
   }
   return (
-    <div className='p-10 border rounded-xl shadow-md mt-7'>
-      <h2 className='font-medium text-2xl mb-3'>Owner / Deals</h2>
+    <div className='p-5 md:p-10 border rounded-xl shadow-md mt-5 md:mt-7'>
+      <h2 className='font-medium text-xl md:text-2xl mb-3'>Owner / Deals</h2>
         <img 
           src={carDetails?.userImageUrl} 
           alt="User Profile" 
-          className='w-24 h-24 rounded-full object-cover'
+          className='w-16 h-16 md:w-24 md:h-24 rounded-full object-cover'
         />
-        <h2 className='mt-2 font-bold text-xl'>{carDetails?.userName}</h2>
-        <h2 className='mt-2 text-gray-500'>{carDetails?.createdBy}</h2>
-        <Button className='w-full mt-6'
+        <h2 className='mt-2 font-bold text-lg md:text-xl'>{carDetails?.userName}</h2>
+        <h2 className='mt-2 text-gray-500 text-sm md:text-base break-all'>{carDetails?.createdBy}</h2>
+        <Button className='w-full mt-4 md:mt-6 min-h-[44px]'
         onClick={OnMessageOwnerButtonClick}
         >Message Owner</Button>
     </div>

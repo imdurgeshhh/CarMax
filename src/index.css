@@ -61,11 +61,30 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
+/* Prevent horizontal scroll globally */
+html {
+  overflow-x: hidden;
+}
+
+#root {
+  overflow-x: hidden;
+}
+
+/* Fluid Typography */
 h1 {
-  font-size: 3.2em;
+  font-size: clamp(1.5rem, 4vw, 3.2rem);
   line-height: 1.1;
+}
+
+h2 {
+  font-size: clamp(0.875rem, 2.5vw, 1.5rem);
+}
+
+p, span, li, label {
+  font-size: clamp(0.875rem, 2vw, 1rem);
 }
 
 button {
@@ -78,6 +97,8 @@ button {
   background-color: #ccccf9;
   cursor: pointer;
   transition: border-color 0.25s;
+  min-height: 44px;
+  min-width: 44px;
 }
 button:hover {
   border-color: #ffffff;
@@ -85,6 +106,14 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Touch targets for mobile */
+@media (max-width: 767px) {
+  a, button, [role="button"], input[type="submit"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
 }
 
 @media (prefers-color-scheme: light) {
@@ -185,4 +214,10 @@ button:focus-visible {
     background-color: white;
     color: var(--foreground);
   }
+}
+
+/* Responsive images globally */
+img {
+  max-width: 100%;
+  height: auto;
 }

@@ -11,19 +11,20 @@ import { Toaster } from 'sonner'
 import SearchByCategory from './search/categoty'
 import SearchByOption from './search'
 import ListingDetails from './listing-details/[id]'
+import ProtectedRoute from './components/ProtectedRoute'
 
 const router=createBrowserRouter([
   {
     path:'/',
-    element:<Home/>
+    element:<ProtectedRoute><Home/></ProtectedRoute>
   },
   {
     path:'/contact',
-    element:<Contact/>
+    element:<ProtectedRoute><Contact/></ProtectedRoute>
   },
   {
     path:'/Profile',
-    element:<ProfilePage/>
+    element:<ProtectedRoute><ProfilePage/></ProtectedRoute>
   },
   {
     path:'/Profile/inbox',
@@ -31,19 +32,19 @@ const router=createBrowserRouter([
   },
   {
     path:'/Add Listing',
-    element:<AddListing/>
+    element:<ProtectedRoute><AddListing/></ProtectedRoute>
   },
   {
     path:'/search',
-    element:<SearchByOption/>
+    element:<ProtectedRoute><SearchByOption/></ProtectedRoute>
   },
   {
     path:'/search/:category',
-    element:<SearchByCategory/>
+    element:<ProtectedRoute><SearchByCategory/></ProtectedRoute>
   },
   {
     path:'/listing-details/:id',
-    element:<ListingDetails/>
+    element:<ProtectedRoute><ListingDetails/></ProtectedRoute>
   }
 ])
 
