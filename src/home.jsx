@@ -14,10 +14,12 @@ function Home() {
       <ScrollAnimation />
       <div style={{ position: 'relative', zIndex: 1 }}>
         <Header/>
-        <Hero/>
-        <Category />
-        <MostSearchCar />
-        <InfoSection/>
+        <main>
+          <Hero/>
+          <Category />
+          <MostSearchCar />
+          <InfoSection/>
+        </main>
         <Footer/>
       </div>
     </div>

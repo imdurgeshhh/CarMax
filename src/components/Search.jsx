@@ -20,7 +20,7 @@ function Search() {
   return (
   <div className='justify-between p-3 md:p-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl md:rounded-full flex flex-col md:flex-row gap-3 md:gap-6 px-4 md:px-5 items-stretch md:items-center w-[92%] max-w-[700px]'>
     <Select onValueChange={(value)=>setCars(value)}>
-      <SelectTrigger className="w-full md:w-auto md:flex-1 outline-none md:border-none shadow-none text-sm md:text-base !bg-transparent text-white !border-transparent">
+      <SelectTrigger aria-label="Filter by car type" className="w-full md:w-auto md:flex-1 outline-none md:border-none shadow-none text-sm md:text-base !bg-transparent text-white !border-transparent">
         <SelectValue placeholder="Cars" />
       </SelectTrigger>
       <SelectContent className='!bg-black/70 backdrop-blur-md !border-white/20'>
@@ -34,7 +34,7 @@ function Search() {
     <Separator className='md:hidden'/>
 
     <Select onValueChange={(value)=>setMake(value)}>
-      <SelectTrigger className="w-full md:w-auto md:flex-1 outline-none md:border-none shadow-none text-sm md:text-base !bg-transparent text-white !border-transparent">
+      <SelectTrigger aria-label="Filter by car make" className="w-full md:w-auto md:flex-1 outline-none md:border-none shadow-none text-sm md:text-base !bg-transparent text-white !border-transparent">
         <SelectValue placeholder="Car Makes" />
       </SelectTrigger>
       <SelectContent className='!bg-black/70 backdrop-blur-md !border-white/20'>
@@ -48,7 +48,7 @@ function Search() {
     <Separator className='md:hidden'/>
 
     <Select onValueChange={(value)=>setPrice(value)}>
-      <SelectTrigger className="w-full md:w-auto md:flex-1 outline-none md:border-none shadow-none text-sm md:text-base !bg-transparent text-white !border-transparent">
+      <SelectTrigger aria-label="Filter by price range" className="w-full md:w-auto md:flex-1 outline-none md:border-none shadow-none text-sm md:text-base !bg-transparent text-white !border-transparent">
         <SelectValue placeholder="Pricing" />
       </SelectTrigger>
       <SelectContent className='!bg-black/70 backdrop-blur-md !border-white/20'>
@@ -57,8 +57,8 @@ function Search() {
         )}
       </SelectContent>
     </Select>
-    <Link to={'/search?cars='+cars+"&make="+make+"&price"+price} className='self-center md:self-auto'>
-    <CiSearch className='text-[40px] md:text-[46px] bg-blue-600 text-white rounded-full p-2.5 hover:scale-105 transition-all cursor-pointer min-w-[40px] min-h-[40px]'/>
+    <Link to={'/search?cars='+cars+"&make="+make+"&price"+price} className='self-center md:self-auto' aria-label="Search cars">
+    <CiSearch aria-hidden="true" className='text-[40px] md:text-[46px] bg-blue-600 text-white rounded-full p-2.5 hover:scale-105 transition-all cursor-pointer min-w-[40px] min-h-[40px]'/>
     </Link>
   </div>
   )

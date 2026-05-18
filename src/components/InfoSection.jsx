@@ -11,12 +11,12 @@ function InfoSection() {
             </div>
 
             <div className="md:col-span-1">
-                <div className="max-w-prose md:max-w-none bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-4 md:p-6">
+                <div className="max-w-prose md:max-w-none bg-gray-900 border border-white/20 rounded-3xl p-4 md:p-6">
                 <h2 className="text-xl md:text-2xl font-semibold text-white sm:text-3xl">
                     The Mercedes-AMG G63 is a luxury SUV with a 4.0L twin-turbo V8 producing brutal power and instant torque.
                 </h2>
 
-                <p className="mt-4 text-pretty text-gray-300 text-sm md:text-base">
+                <p className="mt-4 text-pretty text-gray-200 text-sm md:text-base">
                     It combines hardcore off-road capability with premium interior and aggressive, boxy styling that screams status.
                 </p>
                 </div>

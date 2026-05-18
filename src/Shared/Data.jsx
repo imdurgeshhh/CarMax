@@ -87,19 +87,23 @@ const CarMakes=[
 const Pricing=[
     {
         id:1,
-        amount:1000
+        amount:'10,00,000'
     },
     {
         id:2,
-        amount:2000
+        amount:'50,00,000'
     },
     {
         id:3,
-        amount:5000
+        amount:'1,00,00,000'
     },
     {
         id:4,
-        amount:10000
+        amount:'5,00,00,000'
+    },
+    {
+        id:5,
+        amount:'10,00,00,000'
     }
 ]
 

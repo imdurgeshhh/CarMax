@@ -50,13 +50,25 @@ function Header() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    // Close mobile menu on Escape key
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape' && mobileMenuOpen) {
+                setMobileMenuOpen(false);
+            }
+        };
+        document.addEventListener('keydown', handleKeyDown);
+        return () => document.removeEventListener('keydown', handleKeyDown);
+    }, [mobileMenuOpen]);
+
   return (
-    <div className={`flex justify-between items-center shadow-sm px-4 md:px-5 py-3 fixed top-0 w-full z-50 transition-transform duration-300 bg-black/60 backdrop-blur-md border-b border-white/10 ${isVisible ? '' : '-translate-y-full'}`}>
+    <header className={`flex justify-between items-center shadow-sm px-4 md:px-5 py-3 fixed top-0 w-full z-50 transition-transform duration-300 bg-black/60 backdrop-blur-md border-b border-white/10 ${isVisible ? '' : '-translate-y-full'}`}>
         <Link to="/">
-            <img src='/logo.svg' width={150} height={90} className='cursor-pointer w-[120px] md:w-[150px]' />
+            <img src='/logo.svg' alt="Segment Car Marketplace" width={150} height={90} className='cursor-pointer w-[120px] md:w-[150px]' />
         </Link>
 
         {/* Desktop Nav Links */}
+        <nav aria-label="Main navigation">
         <ul className='hidden md:flex gap-16'>
             <li className='font-medium hover:scale-105 transition-all cursor-pointer'>
                 <Link to="/" className='!text-white hover:!text-blue-400'>Home</Link>
@@ -67,6 +79,7 @@ function Header() {
             </li>
             <li className='font-medium hover:scale-105 transition-all cursor-pointer text-white hover:text-blue-400'>Contact Us</li>
         </ul>
+        </nav>
 
         <div className='flex items-center gap-3 md:gap-5'>
             {isLoaded ? (
@@ -100,15 +113,21 @@ function Header() {
             <button
                 className='md:hidden flex items-center justify-center w-10 h-10 text-white'
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                aria-label="Toggle menu"
+                aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={mobileMenuOpen}
+                aria-controls="mobile-nav-menu"
             >
-                {mobileMenuOpen ? <HiX className='text-2xl' /> : <HiMenu className='text-2xl' />}
+                {mobileMenuOpen ? <HiX className='text-2xl' aria-hidden="true" /> : <HiMenu className='text-2xl' aria-hidden="true" />}
             </button>
         </div>
 
-        {/* Mobile Dropdown Menu */}
+        {/* Mobile Navigation Menu — disclosure widget, NOT a modal */}
         {mobileMenuOpen && (
-            <div className='absolute top-full left-0 w-full bg-black/90 backdrop-blur-md border-b border-white/10 md:hidden animate-in slide-in-from-top-2 duration-200'>
+            <nav
+                id="mobile-nav-menu"
+                aria-label="Mobile navigation"
+                className='absolute top-full left-0 w-full bg-black/90 backdrop-blur-md border-b border-white/10 md:hidden animate-in slide-in-from-top-2 duration-200'
+            >
                 <ul className='flex flex-col py-4 px-6 gap-1'>
                     <li className='py-3 border-b border-white/10'>
                         <Link to="/" className='!text-white hover:!text-blue-400 text-base font-medium block' onClick={() => setMobileMenuOpen(false)}>Home</Link>
@@ -128,10 +147,10 @@ function Header() {
                         </Link>
                     </li>
                 </ul>
-            </div>
+            </nav>
         )}
 
-    </div>
+    </header>
   )
 }
 

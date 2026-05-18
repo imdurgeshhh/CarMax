@@ -6,8 +6,6 @@ import { eq } from 'drizzle-orm';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Service from '@/Shared/Service';
-import { Item } from '@radix-ui/react-select';
-import { index } from 'drizzle-orm/gel-core';
 import CarItem from '@/components/CarItem';
 
 function SearchByCategory() {
@@ -30,14 +28,14 @@ function SearchByCategory() {
 
 
   return (
-    <div>
+    <div className='bg-gray-950 min-h-screen'>
         <Header/>
 
         <div className='mt-15 p-4 md:p-8 lg:p-16 bg-black flex justify-center'>
             <Search/>
         </div>
         <div className='p-4 md:p-10 lg:px-20'>
-            <h2 className='font-bold text-lg md:text-xl'>{category}</h2>
+            <h2 className='font-bold text-lg md:text-xl text-white'>{category}</h2>
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-5 mt-5 md:mt-7'>
                 {carList?.length>0? carList.map((item)=>(
                     <div key={item.id}>
@@ -45,7 +43,7 @@ function SearchByCategory() {
                     </div>
                 )):
                 [1,2,3,4,5,6].map((item,index)=>(
-                     <div key={index} className='h-[250px] md:h-75 rounded-xl bg-slate-200 animate-pulse'>
+                     <div key={index} className='h-[250px] md:h-75 rounded-xl bg-white/10 animate-pulse'>
 
                     </div>
                 ))

@@ -10,7 +10,7 @@ function Category() {
             {Data.Category.map((category, index) =>(
             <Link to={'search/'+ category.name} key={index}>
             <div className='border border-white/20 rounded-xl p-2 md:p-3 items-center flex flex-col hover:shadow-md cursor-pointer backdrop-blur-md bg-white/10 min-h-[44px] transition-all hover:bg-white/20'>
-                <img src={category.icon} width={35} height={35} className='invert w-[clamp(1.5rem,3vw,2rem)]' alt={category.name} />
+                <img src={category.icon} width={35} height={35} className='invert w-[clamp(1.5rem,3vw,2rem)]' alt="" aria-hidden="true" />
                 <h2 className='mt-1.5 text-white text-sm md:text-base text-center leading-tight font-medium'>{category.name}</h2>
             </div>
             </Link>
